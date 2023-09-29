@@ -9,7 +9,7 @@ function getComputerChoice() {
 }
 
 
-// Get player choice
+// Get, validate, and return player choice 
 function getPlayerChoice() {
   let playerChoice = (prompt("Enter your choice: ")).toLowerCase();
   if( (playerChoice == "rock") || (playerChoice == "paper") || (playerChoice == "scissors")){
@@ -20,7 +20,30 @@ function getPlayerChoice() {
   }
 }
 
-console.log(getComputerChoice());
-getPlayerChoice();
-// Get user choice
+// Compare computer and player choice and return the result
+function choiceCompare(playerChoice, computerChoice) {
+  if(playerChoice == computerChoice){
+    return `It's a Tie! You Both Chose ${playerChoice}`; } 
+    else if (
+      (playerChoice == "rock" && computerChoice == "scissors") ||
+      (playerChoice == "paper" && computerChoice == "rock") ||
+      (playerChoice == "scissors" && computerChoice == "paper")
+    ) { return `You Win! ${playerChoice} beats ${computerChoice}`; }
+    else if (
+      (playerChoice == "rock" && computerChoice == "paper") ||
+      (playerChoice == "paper" && computerChoice == "scissors") ||
+      (playerChoice == "scissors" && computerChoice == "rock")
+    ) {return `You Lose! ${computerChoice} beats ${playerChoice}`;}
+    else { console.log("ERROR! Something wrong in choiceCompare2 logic");}
+}
+
+
+function playRound() {
+  let playerChoice = getPlayerChoice();
+  let computerChoice = getComputerChoice();
+  let roundResult = choiceCompare(playerChoice, computerChoice)
+  console.log(roundResult);
+}
+
+playRound();
 // Compare and decide winner  
