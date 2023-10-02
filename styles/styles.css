@@ -1,0 +1,78 @@
+body {
+  background-color: #bbbbbb;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+.choice-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+.player-text-container, .computer-text-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.player-score-container, .computer-score-container {
+  align-items: center;
+  display: flex;
+}
+.player-score, .computer-score {
+  margin-left: 10px;
+}
+
+.player-choice-container, .computer-choice-container {
+  background-color: lightblue;
+  padding: 25px;
+}
+
+.player-button-container, .computer-button-container {
+  display: flex;
+  margin-top: 15px;
+  gap: 5px;
+}
+
+.player-button-container > button {
+  padding: 10px;
+  font-weight: bolder;
+  cursor: pointer;
+  width: 100px;
+  border-color: aqua;
+  border-radius: 10px;
+}
+.player-button-container > button:hover {
+  background-color: aqua;
+  border-color: black;
+}
+
+.computer-button-container > button  {
+  padding: 10px;
+  font-weight: bolder;
+  width: 100px;
+  border-color: red;
+  border-radius: 10px;
+}
+
+.round-results-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
