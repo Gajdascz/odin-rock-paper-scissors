@@ -2,6 +2,7 @@ body {
   background-color: #bbbbbb;
   display: flex;
   flex-direction: column;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -15,6 +16,10 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   align-items: center;
   padding: 25px;
+}
+.title-container > h3 {
+  margin-top: 15px;
+  margin-bottom: -15px;
 }
 
 .choice-container {
@@ -67,6 +72,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 100px;
   border-color: red;
   border-radius: 10px;
+  cursor: not-allowed;
 }
 
 .round-results-container {
