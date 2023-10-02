@@ -8,18 +8,14 @@ function getComputerChoice() {
   return choices[computerChoice];
 }
 
-// Get, validate, and return player choice 
-function getPlayerChoice() {
-  if (playerChoice == null){
-    throw new Error("Player Canceled. Game Terminated.");
-  } else { playerChoice = playerChoice.toLowerCase(); }
-  if( (playerChoice == "rock") || (playerChoice == "paper") || (playerChoice == "scissors")){
-    return playerChoice;
-  } else { 
-    alert("Invalid Input! Please enter Rock, Paper, or Scissors"); 
-    getPlayerChoice();
-  }
-}
+// get playerChoice from UI button selection and calls playRound()
+const playerChoiceButtons = document.querySelectorAll(`.player-button-container > button`);
+playerChoiceButtons.forEach((button) => {
+  button.addEventListener(`click`, () => {
+    playRound(button.value);
+  });
+});
+
 
 // Compare computer and player choice and return the result
 function choiceCompare(playerChoice, computerChoice) {
@@ -39,10 +35,13 @@ function choiceCompare(playerChoice, computerChoice) {
 }
 
 // get and return round result
-function playRound() {
-  let playerChoice = getPlayerChoice();
+function playRound(playerChoice) {
   let computerChoice = getComputerChoice();
   let roundResult = choiceCompare(playerChoice, computerChoice);
+  const roundResultContainer = document.querySelector(`.round-results-container`);
+  const roundResultString = document.createElement(`div`);
+  roundResultString.textContent = roundResult;
+  roundResultContainer.appendChild(roundResultString);
   console.log(roundResult);
   return roundResult;
 }
@@ -71,5 +70,6 @@ function game() {
     console.log(`Computer Wins!\nPlayer Score: ${playerScore} Computer Score: ${computerScore} Tied Rounds: ${tiedRounds}`);
   }
 }
+
 
 //game();
