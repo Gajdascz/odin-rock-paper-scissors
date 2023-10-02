@@ -10,7 +10,6 @@ function getComputerChoice() {
 
 // Get, validate, and return player choice 
 function getPlayerChoice() {
-  let playerChoice = (prompt("Enter your choice: "));
   if (playerChoice == null){
     throw new Error("Player Canceled. Game Terminated.");
   } else { playerChoice = playerChoice.toLowerCase(); }
@@ -73,4 +72,4 @@ function game() {
   }
 }
 
-game();
+//game();
