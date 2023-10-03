@@ -140,3 +140,17 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px;
   white-space: pre-line;
 }
+
+.new-game-button {
+  padding: 10px;
+  font-weight: bolder;
+  width: 200px;
+  border-color: purple;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.new-game-button:hover {
+  background-color: purple;
+  border-color: black;
+}
