@@ -8,15 +8,6 @@ function getComputerChoice() {
   return choices[computerChoice];
 }
 
-// get playerChoice from UI button selection and calls playRound()
-const playerChoiceButtons = document.querySelectorAll(`.player-button-container > button`);
-playerChoiceButtons.forEach((button) => {
-  button.addEventListener(`click`, () => {
-    playRound(button.value);
-  });
-});
-
-
 // Compare computer and player choice and return the result
 function choiceCompare(playerChoice, computerChoice) {
   if(playerChoice == computerChoice){
@@ -34,42 +25,70 @@ function choiceCompare(playerChoice, computerChoice) {
     else { console.log("ERROR! Something wrong in choiceCompare() logic");}
 }
 
-// get and return round result
-function playRound(playerChoice) {
-  let computerChoice = getComputerChoice();
-  let roundResult = choiceCompare(playerChoice, computerChoice);
+// Prepend result of round to game UI
+function displayRoundResult(roundResult) {
   const roundResultContainer = document.querySelector(`.round-results-container`);
   const roundResultString = document.createElement(`div`);
   roundResultString.textContent = roundResult;
-  roundResultContainer.appendChild(roundResultString);
-  console.log(roundResult);
-  return roundResult;
+  roundResultContainer.prepend(roundResultString);
 }
 
-// Play a 5 round game that keeps score and reports a winner or loser at the end
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-  let tiedRounds = 0;
-  let round = 1;
-  while(round <= 5) {
-    let roundResult = playRound();
-    if(roundResult.includes("You Win!")) {
-      playerScore++;
-      round++;
-    } else if (roundResult.includes("You Lose!")) {
-      computerScore++;
-      round++;
-    } else {
-      tiedRounds++;
-    }
+// Tracks player and computer round score, updates game UI, and updates the game session when there's a winner.
+function trackRoundScore(roundResult) {
+  const playerRoundScore = document.querySelector(`.player-score`);
+  const computerRoundScore = document.querySelector(`.computer-score`);
+  let playerRoundScoreValue = +(playerRoundScore.textContent);
+  let computerRoundScoreValue = +(computerRoundScore.textContent);
+  if(roundResult.includes(`You Win!`)){
+    playerRoundScoreValue++;
+    playerRoundScore.textContent = playerRoundScoreValue;
+  } else if (roundResult.includes(`You Lose!`)){
+    computerRoundScoreValue++;
+    computerRoundScore.textContent = computerRoundScoreValue;
+  } else {}
+  if (playerRoundScoreValue == 5 || computerRoundScoreValue == 5) { 
+    updateGameSession(playerRoundScoreValue,computerRoundScoreValue); 
   }
-  if(playerScore > computerScore) {
-    console.log(`Player Wins!\nPlayer Score: ${playerScore} Computer Score: ${computerScore} Tied Rounds: ${tiedRounds}`);
+}
+
+// get playerChoice from UI button selection and passes value to choiceCompare() which also calls getComputerChoice()
+const playerChoiceButtons = document.querySelectorAll(`.player-button-container > button`);
+playerChoiceButtons.forEach((button) => {
+  button.addEventListener(`click`, () => {
+    let roundResult = choiceCompare(button.value, getComputerChoice());
+    displayRoundResult(roundResult);
+    trackRoundScore(roundResult);
+  });
+});
+
+// Append result of game to game UI
+function displayGameResult(gameResult) {
+  const roundResultContainer = document.querySelector(`.round-results-container`);
+  const gameResultString = document.createElement(`div`);
+  gameResultString.textContent = gameResult;
+  console.log(gameResultString.textContent);
+  if(gameResultString.textContent.includes(`Player Wins!`)){
+    gameResultString.classList.toggle(`player-wins-game-result`);
+  } else if(gameResultString.textContent.includes(`Computer Wins!`)){
+    gameResultString.classList.toggle(`computer-wins-game-result`);
+  }
+  gameResultString.append(`\n\nChoose Rock, Paper, or Scissors to start a new game.`);
+  roundResultContainer.prepend(gameResultString);
+}
+// 
+function updateGameSession(playerRoundScoreValue, computerRoundScoreValue) {
+  const playerGameScore = document.querySelector(`.player-game-score`);
+  const computerGameScore = document.querySelector(`.computer-game-score`);
+  let playerGameScoreValue = +(playerGameScore.textContent);
+  let computerGameScoreValue = +(computerGameScore.textContent);
+  if(playerRoundScoreValue > computerRoundScoreValue) {
+    displayGameResult(`Player Wins! \nPlayer Score: ${playerRoundScoreValue} Computer Score: ${computerRoundScoreValue}`);
+    playerGameScoreValue++;
+    playerGameScore.textContent = playerGameScoreValue;
   } else {
-    console.log(`Computer Wins!\nPlayer Score: ${playerScore} Computer Score: ${computerScore} Tied Rounds: ${tiedRounds}`);
+    displayGameResult(`Computer Wins! \nPlayer Score: ${playerRoundScoreValue} Computer Score: ${computerRoundScoreValue}`);
+    computerGameScoreValue++;
+    computerGameScore.textContent = computerGameScoreValue;
   }
+
 }
-
-
-//game();
