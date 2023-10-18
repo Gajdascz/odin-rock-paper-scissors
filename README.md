@@ -1,2 +1,13 @@
 # odin-rock-paper-scissors
-The Odin Project Rock Paper Scissors game using HTML, CSS, Flexbox, and JavaScript.
+TOP: Rock Paper Scissors Game <br/>
+Live Preview: https://gajdascz.github.io/odin-rock-paper-scissors/
+
+# Capabilities
+Play against a computer opponent using random selection in a game of rock paper scissors. <br/>
+The First to win 5 rounds wins the game! <br>
+The result of each round is recoreded and displayed for you to view until 5 is reached.
+Once a score of 5 is reached you're provided a button to refresh the results and score.<br/>
+Once you press the button, the winner of each game is recorded and a running total of games won is displayed until the session ends (page reloads or disconnects).
+
+# Created Using 
+HTML, CSS - Flexbox, and JavaScript.
