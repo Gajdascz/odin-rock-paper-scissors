@@ -1,6 +1,7 @@
 # odin-rock-paper-scissors
 TOP: Rock Paper Scissors Game <br/>
-Live Preview: https://gajdascz.github.io/odin-rock-paper-scissors/
+Live Preview: https://gajdascz.github.io/odin-rock-paper-scissors/ <br>
+Project Page: [The Odin Project](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors)
 
 # Capabilities
 * Play against a computer opponent using random selection in a game of rock paper scissors.
